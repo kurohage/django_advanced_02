@@ -9,7 +9,7 @@ def store_list(request):
     }
     return render(request, 'store_list.html', context)
 
-def store_create(request, **kargs):
+def store_create(request):
     form = StoreModelForm()
     if request.method == "POST":
         form = StoreModelForm(request.POST)
@@ -22,8 +22,8 @@ def store_create(request, **kargs):
     }
     return render(request, 'store_create.html', context)
 
-def store_detail(request, **kwargs):
-    store = Store.objects.get(slug=kwargs['slug'])
+def store_detail(request, slug):
+    store = Store.objects.get(slug=slug)
 
     context = {
         "store": store,
