@@ -9,5 +9,23 @@ def store_list(request):
     }
     return render(request, 'store_list.html', context)
 
+def store_create(request, **kargs):
+    form = StoreModelForm()
+    if request.method == "POST":
+        form = StoreModelForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('list')
+        print (form.errors)
+    context = {
+    "form": form,
+    }
+    return render(request, 'store_create.html', context)
 
+def store_detail(request, **kwargs):
+    store = Store.objects.get(slug=kwargs['slug'])
 
+    context = {
+        "store": store,
+    }
+    return render(request, 'store_detail.html', context)

@@ -1,0 +1,18 @@
+{% load static %}
+<html>
+<head>
+	<title>The Mall: Create Store</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href={% static 'css/main.css' %} />
+</head>
+
+<body>
+	<form action="{% url 'create' %}" method="POST">
+		{% csrf_token %}
+		<h6>Create a new store:</h6><br>
+		{{form.as_p}}
+		<input type="submit" value="Create" class="btn" style="background-color: #e3f2fd; color: black;">
+	</form>
+</body>
+</html>
